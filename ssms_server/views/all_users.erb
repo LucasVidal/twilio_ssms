@@ -1,0 +1,18 @@
+<table class="table table-bordered">
+	<thead>
+		<tr>
+			<th>Username</th>
+			<th>Phone Number</th>
+			<th>Public Key</th>
+		</tr>
+	</thead>
+	<tbody>
+	  <% @users.each do |user| %>
+		<tr>
+			<td><%=user[:username]%></td>
+			<td><%=user[:phone_number]%></td>
+			<td><%=user[:public_key]%></td>
+		</tr>
+	  <% end %>
+  </tbody>
+</table>
