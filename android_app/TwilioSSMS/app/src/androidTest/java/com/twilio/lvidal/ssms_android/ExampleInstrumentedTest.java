@@ -1,4 +1,4 @@
-package com.twilio.lvidal.twiliossms;
+package com.twilio.lvidal.ssms_android;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("com.twilio.lvidal.twiliossms", appContext.getPackageName());
+        assertEquals("com.twilio.lvidal.ssms_android", appContext.getPackageName());
     }
 }

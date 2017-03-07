@@ -1,4 +1,4 @@
-package com.twilio.lvidal.twiliossms;
+package com.twilio.lvidal.ssms_android;
 
 import org.junit.Test;
 

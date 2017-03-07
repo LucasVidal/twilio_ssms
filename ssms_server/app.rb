@@ -5,6 +5,8 @@ require_relative './lib/database'
 
 ENV['RACK_ENV'] ||= 'development'
 
+MESSAGE_FOOTER =  " -- Encrypted message. Decode with Twilio's SSMS"
+
 require 'bundler'
 Bundler.require :default, ENV['RACK_ENV'].to_sym
 
@@ -24,6 +26,7 @@ module ServerNotifications
     set :root, File.dirname(__FILE__)
 
     db = Database.new
+    encrypter = Encrypter.new
 
     get '/' do
       @users = db.all_users
@@ -37,10 +40,15 @@ module ServerNotifications
     end
 
     post '/send_sms' do
-      public_key = public_key(params[:username])
-      sms_body = "Encrypted message. Decode with Twilio's SSMS"\
-      "#{message}"
-      Notifier.send_sms(sms_body, client_id)
+      user = db.fetch_user(params[:username])
+      encrypted_message = encrypter.encrypt(params[:message], user[:public_key])
+      
+      sms_body = "#{encrypted_message}#{MESSAGE_FOOTER}"
+      sms_number = user[:phone_number]
+      
+      "I will send to #{sms_number} this message: \"#{sms_body}\" "
+      #only showing final mesage
+      # Notifier.send_sms(sms_body, client_id)
     end
 
     get '/upload_key' do

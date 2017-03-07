@@ -46,8 +46,9 @@ class Database
 		end
 	end
 
-	def public_key(user_name)
-		dataset.where(:username => username)[:public_key]
+	def fetch_user(username)
+		dataset = DB[:users]
+		dataset.where(:username => username).first
 	  #"-----BEGIN PUBLIC KEY----- \nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAuZ0Klb0iuEkVs/C1k63t Tft3+/ax56tqFYrXNAYGLPKdOPF/TtzLgkjATjzMqD/V0qhR024ojEXT1nWYvTDy lUEQj2TwoTmxxzRRpdRCLfeiQTtqHBgSu/gIoUxnF6sRxbNu4G2ZOKxcutLQZ/vX KSR8kM84u88k1D703pR1YWoClhDX6dOH1fxCOzyD1DYwldWLUTYp8fsefdMtbMkT e71t0qVYDTrrSfKS2J97Sk0CdUpbBKvdEgpV/b0dunMFUuXv3O3QJjtvFQyoNWuA lmDrL/aqoU69G8998BlozvV7fnM83zL+Qbh6TiRigyeSSUI7UIEimAtn2a5SwbQA vQIDAQAB \n-----END PUBLIC KEY-----"
 	end
 

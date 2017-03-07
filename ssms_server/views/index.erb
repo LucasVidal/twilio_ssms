@@ -1,5 +1,5 @@
 <form action='/send_sms' method='post' class="form-inline well">
-  <input type="text" name='text' placeholder="Message" autofocus>
+  <input type="text" name='message' placeholder="Message" autofocus>
   <select name="username">
   <% @users.each do |user| %>
   	<option value="<%=user[:username]%>"><%=user[:username]%> - <%=user[:phone_number]%></option>

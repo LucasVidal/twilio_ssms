@@ -1,9 +1,10 @@
 require 'openssl'
+require 'yaml'
 
 class Encrypter
   def encrypt(plain_text, public_key)
-    rsa = OpenSSL::PKey::RSA.new(public_key)
-    rsa.public_encrypt(plain_text)
+    rsa = OpenSSL::PKey::RSA.new(unescape(public_key))
+    rsa.public_encrypt(plain_text) #, OpenSSL::PKey::RSA::NO_PADDING)
   end
 
   #should be implemented in client app
@@ -14,5 +15,11 @@ class Encrypter
       private_key: rsa_key.to_pem(cipher,'password'),
       public_key: rsa_key.public_key.to_pem
     }
+  end
+
+  private
+
+  def unescape(key)
+    YAML.load(%Q(---\n"#{key}"\n))
   end
 end

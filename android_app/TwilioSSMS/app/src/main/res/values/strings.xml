@@ -1,3 +1,8 @@
 <resources>
-    <string name="app_name">Twilio SSMS</string>
+    <string name="app_name">TwilioSSMS</string>
+    <string name="username">Username</string>
+    <string name="phone_number_input_text">Phone Number (including country code)</string>
+    <string name="private_key">Private Key</string>
+    <string name="public_key">Public Key</string>
+    <string name="create_key_pair">CREATE KEY PAIR</string>
 </resources>
